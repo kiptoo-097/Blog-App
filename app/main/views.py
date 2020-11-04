@@ -83,4 +83,20 @@ def update_profile(uname):
     return render_template("profile/update.html", form=form)
 
 
+@main.route("/blog/comments/<int:blog_id>", methods=["GET", "POST"])
+@login_required
+def view_comments(blog_id):
+    """
+    Function that return  the comments belonging to a particular blog
+    """
+    form = CommentForm()
+    blog = Blog.query.filter_by(id=blog_id).first()
+    comments = Comment.query.filter_by(blog_id=blog.id)
+    if form.validate_on_submit():
+        new_comment = Comment(comment=form.comment.data, blog=blog, user=current_user)
+        new_comment.save_comment()
+        return redirect(url_for("main.view_comments", blog_id=blog.id))
 
+    return render_template(
+        "comments.html", blog=blog, comments=comments, comment_form=form
+    )
