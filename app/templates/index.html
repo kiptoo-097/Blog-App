@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+<!DOCTYPE html>
+
+<head>
+
+</head>
+{% block content %}
+<div class="wrapper">
+  <div style="text-align:center; font-size:30px;">
+    <span
+      style="font-size:100px;font-family: 'Special Elite', cursive; text-align:center;"
+      class="text-primary">Welcome to Kenny Blog</span>
+  </div>
+  <div class="quote"
+    style=" font-size: larger;  text-align: center; margin-top: 5cm;">
+    <p class="qq" style="font-family: 'Marck Script', cursive; font-size: xx-large;">{{quote.quote}}</p>
+    <hr class="my-4">
+    <p>Author:- {{quote.author}}</p>
+  </div>
+
+<div class="container-fluid bg-primary" style="position: absolute;top: 100vh;">
+  {% include 'footer.html'%}
+</div>
+ 
+
+  {% endblock %}
