@@ -34,4 +34,33 @@ def blogs(category=None):
 
 
 
+@main.route("/blog/new/", methods=["GET", "POST"])
+@login_required
+def new_blog():
+    """
+    Function that creates new blogs
+    """
+    form = BlogForm()
+    if form.validate_on_submit():
+        category = form.category.data
+        blog = form.content.data
+
+        new_blog  = Blog(content=blog, user=current_user)
+
+        new_blog.save_blog()
+        return redirect(url_for("main.blogs"))
+
+    return render_template("new_blog.html", new_blog_form=form)
+
+
+@main.route("/user/<uname>")
+def profile(uname):
+    user = User.query.filter_by(username=uname).first()
+
+    if user is None:
+        abort(404)
+
+    return render_template("Profile/profile.html", user=user)
+
+
 
