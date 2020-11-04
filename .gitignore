@@ -1,0 +1,4 @@
+virtual/
+.env
+stash.sh
+*pyc
