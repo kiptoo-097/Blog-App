@@ -6,4 +6,15 @@ from .forms import BlogForm, CommentForm
 from .. import db
 from ..requests import get_quotes
 
+# Views
+@main.route("/")
+def index():
+    """
+    View root page function that returns the index page and its data
+    """
+    title = "Home - Blog"
+
+    quote = get_quotes()
+    return render_template("index.html", quote=quote)
+
 
