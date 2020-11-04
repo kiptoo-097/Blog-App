@@ -17,4 +17,21 @@ def index():
     quote = get_quotes()
     return render_template("index.html", quote=quote)
 
+@main.route("/blogs")
+@main.route("/blogs/<category>")
+def blogs(category=None):
+
+
+    """
+    View root page function that returns the index page and its data
+    """
+    if not category:
+        blogs = Blog.query.all()
+    else:
+        blogs = Blog.query.filter_by(category=category)
+
+    return render_template("blogs.html", category=category, blogs=blogs)
+
+
+
 
