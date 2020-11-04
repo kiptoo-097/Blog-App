@@ -1,0 +1,3 @@
+Hello {{user.username}}
+Karibu to Blog app
+Thanks for signing up :)
